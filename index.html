@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="Menuinteractivoestilos.css">
+    <title>Registro de Materias - UAQ</title>
+</head>
+
+<body>
+
+    <!-- Encabezado Institucional con Escudos -->
+    <header class="encabezado-institucional">
+        <div class="contenedor-cabecera">
+            <!-- Escudo UAQ (Izquierda) -->
+            <img src="escudouaq.png" alt="Escudo UAQ" class="logo-institucional">
+
+            <!-- Títulos Centrados -->
+            <div class="textos-cabecera">
+                <h1 class="titulo-uni">UNIVERSIDAD AUTÓNOMA DE QUERÉTARO</h1>
+                <h2 class="subtitulo-fac">Facultad de Informática</h2>
+            </div>
+
+            <!-- Escudo Facultad de Informática (Derecha) -->
+            <img src="escudofif.png" alt="Escudo FIF" class="logo-institucional">
+        </div>
+
+        <!-- Barra azul institucional -->
+        <div class="barra-formato">FORMATO INSTITUCIONAL PARA EL REGISTRO DE MATERIAS DE ESTUDIO</div>
+    </header>
+
+    <main class="contenedor-formulario">
+        <form id="formMateria">
+
+            <!-- ================= PASO 1: DATOS INSTITUCIONALES ================= -->
+            <div id="paso1" class="paso-formulario">
+                <h2>Datos Generales (Paso 1 de 3)</h2>
+
+                <div class="cuadricula-campos">
+                    <!-- Facultad -->
+                    <div class="campo">
+                        <label for="nombreFacultad">Nombre de la facultad:</label>
+                        <input type="text" id="nombreFacultad" name="nombreFacultad" value="Facultad de Informática" readonly class="campo-fijo" required>
+                    </div>
+
+                    <!-- Campus -->
+                    <div class="campo">
+                        <label for="campus">Campus:</label>
+                        <input type="text" id="campus" name="campus" value="Juriquilla" readonly class="campo-fijo" required>
+                    </div>
+                    
+                    <!-- Carrera -->
+                    <div class="campo">
+                        <label for="carrera">Carrera:</label>
+                        <select id="carrera" name="carrera" required>
+                            <option value="" disabled selected>Selecciona una carrera</option>
+                            <option value="1">Licenciatura en Informática</option>
+                            <option value="2">Licenciatura en Administración de las Tecnologías</option>
+                            <option value="3">Ingeniería de Software</option>
+                            <option value="4">Ingeniería en Computación</option>
+                            <option value="5">Ingeniería en Telecomunicaciones y Redes</option>
+                            <option value="6">Ingeniería en Ciencia y Analítica de Datos</option>
+                            <option value="7">Ingeniería en Tecnologías de Información y Ciberseguridad</option>
+                        </select>
+                    </div>
+
+                    <!-- Plan de estudios -->
+                    <div class="campo">
+                        <label for="planEstudios">Plan de estudios:</label>
+                        <input 
+                            type="text" 
+                            id="planEstudios" 
+                            name="planEstudios" 
+                            placeholder="Ej. INF18" 
+                            pattern="[A-Z]{3}[0-9]{2}" 
+                            minlength="5" 
+                            maxlength="5" 
+                            title="Debe contener exactamente 3 letras mayúsculas y 2 números (ej. TEL18 o INF18)" 
+                            oninput="this.value = this.value.toUpperCase()" 
+                            required>
+                    </div>
+
+                    <!-- Período -->
+                    <div class="campo">
+                        <label for="periodoEstudios">Período:</label>
+                        <input 
+                            type="text" 
+                            id="periodoEstudios" 
+                            name="periodoEstudios" 
+                            placeholder="Ej. 2026-2" 
+                            pattern="20[0-3][0-9]-[1-2]" 
+                            minlength="6" 
+                            maxlength="6" 
+                            title="Ingresa un período válido entre 2000-1 y 2039-2 (ej. 2026-2)" 
+                            required>
+                    </div>
+
+                    <!-- Nivel Educativo -->
+                    <div class="campo">
+                        <label for="nivelEducativo">Nivel Educativo:</label>
+                        <select id="nivelEducativo" name="nivelEducativo" required>
+                            <option value="" disabled selected>Selecciona un nivel educativo</option>
+                            <option value="Licenciatura">Licenciatura</option>
+                            <option value="Maestría">Maestría</option>
+                            <option value="Doctorado">Doctorado</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Botones Paso 1 -->
+                <div class="botones-form">
+                    <button type="reset" id="btnLimpiar1" class="btn-secundario">Borrar todo</button>
+                    <button type="button" id="btnIrPaso2" class="btn-principal">Siguiente ➔</button>
+                </div>
+            </div>
+
+            <!-- ================= PASO 2: DETALLES DE LA MATERIA Y HORAS ================= -->
+            <div id="paso2" class="paso-formulario oculto">
+                <h2>Detalles de la Materia (Paso 2 de 3)</h2>
+
+                <div class="cuadricula-campos">
+                    <!-- Fila 1: Clave y Nombre -->
+                    <div class="campo">
+                        <label for="claveMateria">Clave de la materia:</label>
+                        <input type="text" id="claveMateria" name="claveMateria" placeholder="Ej. 2001" required>
+                    </div>
+
+                    <div class="campo">
+                        <label for="nombreMateria">Nombre de la materia:</label>
+                        <input type="text" id="nombreMateria" name="nombreMateria" placeholder="Ej. ADMINISTRACIÓN" required>
+                    </div>
+
+                    <!-- Fila 2: Eje y Prerrequisitos -->
+                    <div class="campo">
+                        <label for="etapa">Eje, Área o Etapa Formativa:</label>
+                        <select id="etapa" name="etapa" required>
+                            <option value="" disabled selected>Seleccione un área</option>
+                            <option value="1">Entorno Social</option>
+                            <option value="2">Matemáticas</option>
+                            <option value="3">Arquitectura de las Computadoras</option>
+                            <option value="4">Tratamiento de la Información</option>
+                            <option value="5">Redes</option>
+                            <option value="6">Interacción Hombre Máquina</option>
+                            <option value="7">Software de Base</option>
+                            <option value="8">Programación e Ingeniería de Software</option>
+                            <option value="9">Formación Universitaria</option>
+                            <option value="10">Inglés</option>
+                            <option value="11">Tópicos</option>
+                            <option value="12">Prácticas Profesionales</option>
+                        </select>
+                    </div>
+
+                    <div class="campo">
+                        <label for="preRequisitos">Pre-requisitos:</label>
+                        <input type="text" id="preRequisitos" name="preRequisitos" placeholder="Escribe el prerrequisito o deja vacío si no hay">
+                    </div>
+
+                    <!-- SECCIÓN DESTACADA: CRÉDITOS Y DISTRIBUCIÓN HORARIA -->
+                    <div class="seccion-horas">
+                        <h3 class="subtitulo-seccion">Créditos y Horas Semanales</h3>
+                        
+                        <div class="cuadricula-horas">
+                            <div class="mini-campo destacado-creditos">
+                                <label for="creditos">Créditos</label>
+                                <input type="number" id="creditos" name="creditos" min="1" max="20" placeholder="Ej. 5" required>
+                            </div>
+
+                            <div class="mini-campo">
+                                <label for="horasTeoria">Teoría (HT)</label>
+                                <input type="number" id="horasTeoria" name="horasTeoria" min="0" value="0" required>
+                            </div>
+
+                            <div class="mini-campo">
+                                <label for="horasPresenciales">Práctica (HP)</label>
+                                <input type="number" id="horasPresenciales" name="horasPresenciales" min="0" value="0" required>
+                            </div>
+
+                            <div class="mini-campo">
+                                <label for="horasIndependiente">Independiente (HAI)</label>
+                                <input type="number" id="horasIndependiente" name="horasIndependiente" min="0" value="0" required>
+                            </div>
+
+                            <div class="mini-campo">
+                                <label for="horasLinea">Línea (HL)</label>
+                                <input type="number" id="horasLinea" name="horasLinea" min="0" value="0" required>
+                            </div>
+
+                            <div class="mini-campo">
+                                <label for="horasVirtuales">Virtual (HV)</label>
+                                <input type="number" id="horasVirtuales" name="horasVirtuales" min="0" value="0" required>
+                            </div>
+
+                            <div class="mini-campo">
+                                <label for="horasCampo">Campo (HTCS)</label>
+                                <input type="number" id="horasCampo" name="horasCampo" min="0" value="0" required>
+                            </div>
+
+                            <div class="mini-campo">
+                                <label for="horasLaboratorio">Laboratorio (HLAB)</label>
+                                <input type="number" id="horasLaboratorio" name="horasLaboratorio" min="0" value="0" required>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Fila Final: Modalidad y Opción Educativa -->
+                    <div class="campo">
+                        <label for="modalidadPlan">Modalidad:</label>
+                        <select id="modalidadPlan" name="modalidadPlan" required>
+                            <option value="Escolarizada" selected>Escolarizada</option>
+                            <option value="No Escolarizada">No Escolarizada</option>
+                            <option value="Mixta">Mixta</option>
+                            <option value="Dual">Dual</option>
+                        </select>
+                    </div>
+
+                    <div class="campo">
+                        <label for="opcionEducativa">Opción Educativa:</label>
+                        <select id="opcionEducativa" name="opcionEducativa" required>
+                            <option value="Presencial" selected>Presencial</option>
+                            <option value="En Línea">En Línea</option>
+                            <option value="Dual">Dual</option>
+                            <option value="Mixta">Mixta</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Botones Paso 2 -->
+                <div class="botones-form">
+                    <button type="button" id="btnVolverPaso1" class="btn-secundario">⬅ Anterior</button>
+                    <button type="button" id="btnIrPaso3" class="btn-principal">Siguiente ➔</button>
+                </div>
+            </div>
+
+            <!-- ================= PASO 3: PROGRAMA ACADÉMICO ================= -->
+            <div id="paso3" class="paso-formulario oculto">
+                <h2>Contenido y Evaluación (Paso 3 de 3)</h2>
+
+                <!-- Objetivo General: Redacción fluida única -->
+                <div class="campo-ancho-completo">
+                    <label for="objetivoGeneral">Objetivo o Propósito General:</label>
+                    <textarea 
+                        id="objetivoGeneral" 
+                        name="objetivoGeneral" 
+                        rows="3" 
+                        placeholder="Al concluir el presente programa el estudiante comprenderá..." 
+                        required></textarea>
+                </div>
+
+                <!-- Objetivos Específicos: Lista dinámica numerada -->
+                <div class="campo-ancho-completo">
+                    <label>Objetivos o Propósitos Específicos:</label>
+                    
+                    <div id="contenedorObjetivos" class="lista-dinamica">
+                        <div class="fila-objetivo">
+                            <span class="numero-objetivo">1.</span>
+                            <input type="text" class="input-objetivo" name="objetivoEspecifico[]" placeholder="Escribe el objetivo específico..." required>
+                            <button type="button" class="btn-eliminar-item" disabled title="Debe existir al menos un objetivo">✕</button>
+                        </div>
+                    </div>
+
+                    <button type="button" id="btnAgregarObjetivo" class="btn-agregar-item">
+                        + Agregar otro objetivo
+                    </button>
+                </div>
+
+                <!-- Introducción -->
+                <div class="campo-ancho-completo">
+                    <label for="introduccion">Introducción:</label>
+                    <textarea id="introduccion" name="introduccion" rows="3"></textarea>
+                </div>
+
+                <!-- Justificación -->
+                <div class="campo-ancho-completo">
+                    <label for="justificacion">Justificación:</label>
+                    <textarea 
+                        id="justificacion" 
+                        name="justificacion" 
+                        rows="4" 
+                        placeholder="Describe la relevancia de la materia en el plan de estudios, su impacto en la práctica profesional y la aplicación tecnológica (TIC)..." 
+                        required></textarea>
+                </div>
+
+                <!-- Competencias a Desarrollar -->
+                <div class="campo-ancho-completo">
+                    <label>Competencias a Desarrollar:</label>
+                    
+                    <div class="nota-institucional">
+                        Las competencias a desarrollar son las establecidas por el <strong>CONAIC</strong> en conjunto con el <strong>SEOUL ACCORD</strong> como parte de sus atributos de egreso y competencias necesarias para el desarrollo profesional e integral de los estudiantes.
+                    </div>
+
+                    <div id="contenedorCompetencias" class="lista-dinamica">
+                        <div class="fila-competencia">
+                            <span class="icono-vineta">•</span>
+                            <input type="text" class="input-competencia" name="competencias[]" placeholder="Ej. Capacidad de análisis y síntesis..." required>
+                            <button type="button" class="btn-eliminar-item" disabled title="Debe existir al menos una competencia">✕</button>
+                        </div>
+                    </div>
+
+                    <button type="button" id="btnAgregarCompetencia" class="btn-agregar-item">
+                        + Agregar otra competencia
+                    </button>
+                </div>
+
+                <!-- Resumen temático estructurado (Hasta 20 Unidades con Subtemas) -->
+                <div class="campo-ancho-completo">
+                    <div class="cabecera-bloque-unidades">
+                        <label>Resumen de Contenido Temático (Unidades y Subtemas):</label>
+                        <span id="contadorUnidades" class="contador-limite">1 de 20 unidades</span>
+                    </div>
+
+                    <div id="contenedorUnidades" class="lista-unidades">
+                        <div class="tarjeta-unidad" data-unidad="1">
+                            <div class="fila-cabecera-unidad">
+                                <span class="badge-unidad">Unidad 1</span>
+                                <input type="text" class="input-titulo-unidad" name="tituloUnidad[]" placeholder="Título de la unidad (ej. La administración y evolución...)" required>
+                                <button type="button" class="btn-eliminar-unidad" disabled title="Debe existir al menos una unidad">✕</button>
+                            </div>
+
+                            <div class="contenedor-subtemas">
+                                <div class="fila-subtema">
+                                    <span class="prefijo-subtema">1.1.</span>
+                                    <input type="text" class="input-subtema" name="subtema_1[]" placeholder="Subtema (ej. Significado de la administración)" required>
+                                    <button type="button" class="btn-eliminar-subtema" disabled title="Debe haber al menos un subtema">✕</button>
+                                </div>
+                            </div>
+
+                            <button type="button" class="btn-agregar-subtema">+ Agregar subtema</button>
+                        </div>
+                    </div>
+
+                    <button type="button" id="btnAgregarUnidad" class="btn-agregar-unidad">
+                        + Agregar Unidad
+                    </button>
+                </div>
+
+                <!-- Metodología y Estrategias de Enseñanza (Lista dinámica libre) -->
+                <div class="campo-ancho-completo">
+                    <label>Metodología y Estrategias de Enseñanza:</label>
+
+                    <div id="contenedorEstrategias" class="lista-dinamica">
+                        <div class="fila-estrategia">
+                            <span class="icono-vineta">•</span>
+                            <input type="text" class="input-estrategia" name="estrategias[]" placeholder="Ej. Enfoque basado en competencias, aprendizaje colaborativo..." required>
+                            <button type="button" class="btn-eliminar-item" disabled title="Debe existir al menos una estrategia">✕</button>
+                        </div>
+                    </div>
+
+                    <button type="button" id="btnAgregarEstrategia" class="btn-agregar-item">
+                        + Agregar otra estrategia
+                    </button>
+                </div>
+
+                <!-- ================= SECCIÓN DE EVALUACIÓN Y PONDERACIÓN ================= -->
+                <div class="seccion-evaluacion">
+                    <h3 class="subtitulo-seccion">Evaluación y Ponderación</h3>
+
+                    <!-- Modalidades de evaluación editables -->
+                    <div class="cuadricula-modalidades-eval">
+                        <div class="campo-eval">
+                            <label for="evalDiagnostica">Evaluación diagnóstica:</label>
+                            <textarea id="evalDiagnostica" name="evalDiagnostica" rows="2" required>Su propósito es establecer un vínculo significativo entre lo que el estudiante sabe, piensa o siente antes de iniciar su proceso enseñanza-aprendizaje sobre el contenido a abordar.</textarea>
+                        </div>
+
+                        <div class="campo-eval">
+                            <label for="evalFormativa">Evaluación formativa:</label>
+                            <textarea id="evalFormativa" name="evalFormativa" rows="2" required>Ocurre durante todo el proceso enseñanza-aprendizaje y juega un importante papel regulador en dicho proceso, ya que permite conocer los aprendizajes logrados y retroalimentar a los estudiantes y al docente.</textarea>
+                        </div>
+
+                        <div class="campo-eval">
+                            <label for="evalSumativa">Evaluación sumativa:</label>
+                            <textarea id="evalSumativa" name="evalSumativa" rows="2" required>Modalidad que implica recuperar todas las actividades que permiten dar cuenta del avance individual de los alumnos, al final de cada tema y al término del curso.</textarea>
+                        </div>
+
+                        <div class="campo-eval">
+                            <label for="evalIndependientes">Independientes:</label>
+                            <textarea id="evalIndependientes" name="evalIndependientes" rows="2" required>Definir los proyectos y experiencias de aprendizaje que realizarán los estudiantes, así como las rúbricas o instrumentos de evaluación que se usarán.</textarea>
+                        </div>
+                    </div>
+
+                    <!-- Instrumentos de evaluación (prellenados pero editables) -->
+                    <div class="bloque-instrumentos">
+                        <label>Instrumentos de evaluación:</label>
+                        <div id="contenedorInstrumentos" class="lista-dinamica">
+                            <div class="fila-instrumento">
+                                <span class="icono-vineta">•</span>
+                                <input type="text" class="input-instrumento" name="instrumentosEval[]" value="Prácticas en clase" required>
+                                <button type="button" class="btn-eliminar-item" title="Eliminar instrumento">✕</button>
+                            </div>
+                            <div class="fila-instrumento">
+                                <span class="icono-vineta">•</span>
+                                <input type="text" class="input-instrumento" name="instrumentosEval[]" value="Análisis de casos prácticos" required>
+                                <button type="button" class="btn-eliminar-item" title="Eliminar instrumento">✕</button>
+                            </div>
+                            <div class="fila-instrumento">
+                                <span class="icono-vineta">•</span>
+                                <input type="text" class="input-instrumento" name="instrumentosEval[]" value="Tareas" required>
+                                <button type="button" class="btn-eliminar-item" title="Eliminar instrumento">✕</button>
+                            </div>
+                            <div class="fila-instrumento">
+                                <span class="icono-vineta">•</span>
+                                <input type="text" class="input-instrumento" name="instrumentosEval[]" value="Proyecto final" required>
+                                <button type="button" class="btn-eliminar-item" title="Eliminar instrumento">✕</button>
+                            </div>
+                        </div>
+                        <button type="button" id="btnAgregarInstrumento" class="btn-agregar-item">
+                            + Agregar instrumento de evaluación
+                        </button>
+                    </div>
+
+                    <!-- Tabla de Ponderación Editable (Por defecto 30%, 30%, 40%) -->
+                    <div class="bloque-ponderacion">
+                        <div class="cabecera-ponderacion">
+                            <label>Propuesta para la evaluación¹ (Editable):</label>
+                            <span id="badgeTotalPonderacion" class="badge-total total-ok">Total: 100%</span>
+                        </div>
+
+                        <div class="tabla-ponderacion-wrapper">
+                            <table class="tabla-ponderacion">
+                                <thead>
+                                    <tr>
+                                        <th>Instrumento / Rubro</th>
+                                        <th class="col-porcentaje">Ponderación (%)</th>
+                                        <th class="col-accion"></th>
+                                    </tr>
+                                </thead>
+                                <tbody id="cuerpoPonderacion">
+                                    <tr>
+                                        <td>
+                                            <input type="text" class="input-rubro-eval" name="rubroEval[]" value="Prácticas / Tareas / Portafolio de evidencias" required>
+                                        </td>
+                                        <td>
+                                            <div class="grupo-porcentaje">
+                                                <input type="number" class="input-porcentaje-eval" name="porcentajeEval[]" value="30" min="0" max="100" required>
+                                                <span>%</span>
+                                            </div>
+                                        </td>
+                                        <td class="celda-accion">
+                                            <button type="button" class="btn-eliminar-fila-tabla" title="Eliminar rubro">✕</button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <input type="text" class="input-rubro-eval" name="rubroEval[]" value="Proyecto final / Rúbrica de evaluación / Lista de cotejo" required>
+                                        </td>
+                                        <td>
+                                            <div class="grupo-porcentaje">
+                                                <input type="number" class="input-porcentaje-eval" name="porcentajeEval[]" value="30" min="0" max="100" required>
+                                                <span>%</span>
+                                            </div>
+                                        </td>
+                                        <td class="celda-accion">
+                                            <button type="button" class="btn-eliminar-fila-tabla" title="Eliminar rubro">✕</button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <input type="text" class="input-rubro-eval" name="rubroEval[]" value="Exámenes (orales / escritos)" required>
+                                        </td>
+                                        <td>
+                                            <div class="grupo-porcentaje">
+                                                <input type="number" class="input-porcentaje-eval" name="porcentajeEval[]" value="40" min="0" max="100" required>
+                                                <span>%</span>
+                                            </div>
+                                        </td>
+                                        <td class="celda-accion">
+                                            <button type="button" class="btn-eliminar-fila-tabla" title="Eliminar rubro">✕</button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div class="pie-ponderacion">
+                            <button type="button" id="btnAgregarRubroEval" class="btn-agregar-item">
+                                + Agregar otro rubro
+                            </button>
+                            <small class="nota-pie-eval">¹La propuesta está sujeta a cambios según las necesidades del grupo, del docente y de la asignatura.</small>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ================= CRITERIOS DE ACREDITACIÓN Y PAUTAS (FIJOS) ================= -->
+                <div class="seccion-normativa">
+                    <div class="bloque-fijo-institucional">
+                        <h3 class="subtitulo-seccion">Criterios de Acreditación <span class="etiqueta-fijo">Normativa UAQ</span></h3>
+                        <ol class="lista-normativa">
+                            <li>80% de asistencia a la asignatura.</li>
+                            <li>80% de entrega de tareas, trabajos y/o prácticas.</li>
+                            <li>Aprobar todas las evaluaciones parciales.</li>
+                            <li>Calificación final mínima de 6.</li>
+                            <li>Las que el docente determine como necesarias para la asignatura dentro de lo establecido en la normativa universitaria.</li>
+                        </ol>
+                    </div>
+
+                    <div class="bloque-fijo-institucional">
+                        <h3 class="subtitulo-seccion">Pautas de Integridad Académica <span class="etiqueta-fijo">Normativa UAQ</span></h3>
+                        <ol class="lista-normativa">
+                            <li>Originalidad del trabajo;</li>
+                            <li>Uso de sistema de citas y referencias;</li>
+                            <li>Uso ético de la ciencia y la tecnología (mandato sobre bioética de la UNESCO);</li>
+                            <li>Uso ético de la Inteligencia Artificial (IA);</li>
+                            <li>Entre otras.</li>
+                        </ol>
+                    </div>
+                </div>
+
+                <!-- ================= PERFIL DOCENTE (EDITABLE) ================= -->
+                <div class="campo-ancho-completo">
+                    <label for="perfilDocente">Perfil Docente:</label>
+                    <textarea 
+                        id="perfilDocente" 
+                        name="perfilDocente" 
+                        rows="4" 
+                        placeholder="Describe el grado académico requerido, área de especialidad, experiencia profesional y docente deseable para impartir la asignatura..." 
+                        required></textarea>
+                </div>
+
+                <!-- ================= BIBLIOGRAFÍA (LISTA DINÁMICA CON VIÑETAS) ================= -->
+                <div class="campo-ancho-completo">
+                    <label>Bibliografía:</label>
+
+                    <div id="contenedorBibliografia" class="lista-dinamica">
+                        <div class="fila-bibliografia">
+                            <span class="icono-vineta">•</span>
+                            <input type="text" class="input-bibliografia" name="bibliografia[]" placeholder="Ej. Apellido, N. (Año). Título del libro. Editorial." required>
+                            <button type="button" class="btn-eliminar-item" disabled title="Debe existir al menos una referencia bibliográfica">✕</button>
+                        </div>
+                    </div>
+
+                    <button type="button" id="btnAgregarBibliografia" class="btn-agregar-item">
+                        + Agregar referencia bibliográfica
+                    </button>
+                </div>
+
+                <!-- ================= GLOSARIO Y NOMENCLATURA OFICIAL (COLAPSABLE) ================= -->
+                <details class="acordeon-glosario">
+                    <summary class="titulo-glosario">
+                        ℹ️ Consultar glosario y nomenclatura oficial del formato UAQ
+                    </summary>
+                    <div class="contenido-glosario">
+                        <p><strong>¹ EJE:</strong> Categorías que organizan los contenidos y habilidades a desarrollar en un programa educativo (ciencias sociales, naturales, humanidades; o ejes teóricos, metodológicos, contextuales, etc.).</p>
+                        <p><strong>¹ ÁREA O ETAPA:</strong> Subdivisión dentro de un eje o campos de conocimiento dentro de un eje general.</p>
+                        <p><strong>¹ ETAPA FORMATIVA:</strong> Periodo específico en la trayectoria educativa de un estudiante (licenciatura, maestría, doctorado o formación profesional).</p>
+                        <p><strong>¹ PRE-REQUISITO(S):</strong> Materias que deben ser previamente acreditadas.</p>
+
+                        <div class="subbloque-glosario">
+                            <strong>¹ NOMENCLATURA DE HRS. POR SEMANA:</strong>
+                            <table class="tabla-glosario">
+                                <thead>
+                                    <tr>
+                                        <th>Nomenclatura</th>
+                                        <th>Definición</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr><td><strong>HT</strong></td><td>Horas Teoría</td></tr>
+                                    <tr><td><strong>HP</strong></td><td>Horas Presenciales</td></tr>
+                                    <tr><td><strong>HL</strong></td><td>Horas en Línea (entre 60 y 120 en Maestría; 120 a 240 en Doctorado; solo programas mixtos y no escolarizados)</td></tr>
+                                    <tr><td><strong>HV</strong></td><td>Horas Virtuales (entre 60 y 120 en Maestría; 120 a 240 en Doctorado; solo programas mixtos y no escolarizados)</td></tr>
+                                    <tr><td><strong>HAI</strong></td><td>Aprendizaje Independiente</td></tr>
+                                    <tr><td><strong>HTCS</strong></td><td>Horas de Trabajo de Campo Supervisado</td></tr>
+                                    <tr><td><strong>HLAB</strong></td><td>Horas de Laboratorio</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <p><strong>¹ MODALIDAD DEL PLAN DE ESTUDIOS:</strong></p>
+                        <ul>
+                            <li><strong>Escolarizada:</strong> Entorno educativo físico con clases presenciales regulares en horario establecido.</li>
+                            <li><strong>No Escolarizada:</strong> Metodología no presencial con aprendizaje independiente o grupal y asesoría docente.</li>
+                            <li><strong>Mixta:</strong> Combina las modalidades escolarizada y no escolarizada.</li>
+                            <li><strong>Dual:</strong> Formación combinada en Escuela y Empresa (Sistema de Educación Dual SED - SEP).</li>
+                        </ul>
+
+                        <p><strong>¹ OPCIÓN EDUCATIVA:</strong></p>
+                        <ul>
+                            <li><strong>Presencial:</strong> Aula o espacio educativo físico con acompañamiento presencial de la figura docente.</li>
+                            <li><strong>En Línea o Virtual:</strong> Uso de las Tecnologías de la Información y la Comunicación (TIC) en internet.</li>
+                            <li><strong>Dual:</strong> Prácticas combinadas entre espacios físicos de aulas y ejercicio profesional en escenarios reales.</li>
+                            <li><strong>Mixta:</strong> Combina las modalidades presencial y en línea sirviéndose de las TIC.</li>
+                        </ul>
+                    </div>
+                </details>
+
+                <!-- Botones Paso 3 -->
+                <div class="botones-form">
+                    <button type="button" id="btnVolverPaso2" class="btn-secundario">⬅ Anterior</button>
+                    <button type="submit" id="btnGuardar" class="btn-guardar">Guardar Materia</button>
+                </div>
+            </div>
+
+        </form>
+    </main>
+
+    <script src="Menuinteractivointeracciones.js"></script>
+</body>
+</html>
